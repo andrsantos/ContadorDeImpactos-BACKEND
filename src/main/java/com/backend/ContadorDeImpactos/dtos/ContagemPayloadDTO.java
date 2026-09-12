@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 public class ContagemPayloadDTO {
     
+    private String painelId;
     private Integer total_acumulado_geral;
     private Integer total_no_minuto_atual;
     private Map<String, Integer> classes;

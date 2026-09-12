@@ -6,7 +6,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Map;
-
 import com.backend.ContadorDeImpactos.dtos.ContagemPayloadDTO;
 
 @Entity
@@ -25,9 +24,11 @@ public class HistoricoTrafegoEntity {
     private Integer motos;
     private Integer onibus;
     private Integer caminhoes;
+    @ManyToOne
+    @JoinColumn(name = "painel_id", nullable = false)
+    private PainelEntity painel;
 
     public void preencherComDTO(ContagemPayloadDTO dto) {
-
         this.dataHora = LocalDateTime.ofInstant(
                 Instant.ofEpochMilli((long) (dto.getTimestamp() * 1000)),
                 ZoneId.systemDefault());
@@ -40,5 +41,4 @@ public class HistoricoTrafegoEntity {
         this.onibus = cls.getOrDefault("5", 0);
         this.caminhoes = cls.getOrDefault("7", 0);
     }
-
 }
